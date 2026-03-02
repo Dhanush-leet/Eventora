@@ -283,6 +283,3 @@ MIT License
 
 Full-stack Developer
 CSBS | Spring Boot | React | Distributed Systems
-
-Tell me what you want next.
-```
