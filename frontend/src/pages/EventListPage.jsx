@@ -11,7 +11,7 @@ const events = [
         basePrice: 4500,
         popularityPercentile: 95,
         demandScore: 4.8,
-        bannerImageUrl: 'https://images.unsplash.com/photo-1540039155732-6761b54cbaca?w=800&auto=format&fit=crop',
+        bannerImageUrl: 'https://picsum.photos/seed/event1/800/600',
     },
     {
         id: 'e2',
@@ -21,7 +21,7 @@ const events = [
         basePrice: 3500,
         popularityPercentile: 85,
         demandScore: 3.9,
-        bannerImageUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop',
+        bannerImageUrl: 'https://picsum.photos/seed/event2/800/600',
     },
     {
         id: 'e3',
@@ -31,7 +31,7 @@ const events = [
         basePrice: 2000,
         popularityPercentile: 99,
         demandScore: 4.9,
-        bannerImageUrl: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&auto=format&fit=crop',
+        bannerImageUrl: 'https://picsum.photos/seed/event3/800/600',
     }
 ];
 

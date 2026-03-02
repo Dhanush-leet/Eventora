@@ -104,7 +104,7 @@ export const Hero = () => {
                     className="mt-48 w-full max-w-6xl aspect-[16/9] rounded-[60px] overflow-hidden shadow-[0_120px_150px_-30px_rgba(0,0,0,0.15)] bg-zinc-100 relative group"
                 >
                     <img
-                        src="https://images.unsplash.com/photo-1543840950-fa0d92203673?w=1600&auto=format&fit=crop"
+                        src="https://picsum.photos/seed/hero/1600/900"
                         alt="Interstellar Experience"
                         className="w-full h-full object-cover group-hover:scale-110 transition-all duration-[3000ms] cursor-none"
                     />

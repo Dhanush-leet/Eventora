@@ -2,13 +2,13 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const images = [
-    'https://images.unsplash.com/photo-1540039155732-6761b54cbaca?w=800&auto=format&fit=crop', // Coldplay
-    'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop', // Ed Sheeran
-    'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&auto=format&fit=crop', // Rahman
-    'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&auto=format&fit=crop', // Concert
-    'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop', // Festival
-    'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&auto=format&fit=crop', // Crowd
-    'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&auto=format&fit=crop', // Party
+    'https://picsum.photos/seed/marquee1/800/600', // Coldplay
+    'https://picsum.photos/seed/marquee2/800/600', // Ed Sheeran
+    'https://picsum.photos/seed/marquee3/800/600', // Rahman
+    'https://picsum.photos/seed/marquee4/800/600', // Concert
+    'https://picsum.photos/seed/marquee5/800/600', // Festival
+    'https://picsum.photos/seed/marquee6/800/600', // Crowd
+    'https://picsum.photos/seed/marquee7/800/600', // Party
 ];
 
 export function ScrollingMarquee({ speed = 1, direction = 1 }) {

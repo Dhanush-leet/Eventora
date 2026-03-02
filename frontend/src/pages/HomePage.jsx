@@ -10,25 +10,25 @@ const recommendedMovies = [
         title: 'THE DARK KNIGHT',
         genre: 'Action/Drama',
         rating: '9.5',
-        img: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&auto=format&fit=crop'
+        img: 'https://picsum.photos/seed/darkknight/800/600'
     },
     {
         title: 'INTERSTELLAR',
         genre: 'Sci-Fi/Adventure',
         rating: '9.2',
-        img: 'https://images.unsplash.com/photo-1543840950-fa0d92203673?w=800&auto=format&fit=crop'
+        img: 'https://picsum.photos/seed/interstellar/800/600'
     },
     {
         title: 'INCEPTION',
         genre: 'Sci-Fi/Thriller',
         rating: '9.0',
-        img: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=800&auto=format&fit=crop'
+        img: 'https://picsum.photos/seed/inception/800/600'
     },
     {
         title: 'DUNE: PART TWO',
         genre: 'Sci-Fi/Adventure',
         rating: '9.6',
-        img: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=800&auto=format&fit=crop'
+        img: 'https://picsum.photos/seed/dune/800/600'
     }
 ];
 

@@ -5,19 +5,19 @@ const items = [
     {
         title: 'THE BRAND LIVE',
         subtitle: 'EXPLORE OUR STORY',
-        img: 'https://images.unsplash.com/photo-1540039155732-6761b54cbaca?w=1200&auto=format&fit=crop', // Concert Crowd Unsplash
+        img: 'https://picsum.photos/seed/mosaic1/1200/800', // Concert Crowd Unsplash
         size: 'large'
     },
     {
         title: 'TRENDING CATEGORIES',
         subtitle: 'MUST HAVE EVENTS',
-        img: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop', // Festival Spotlight
+        img: 'https://picsum.photos/seed/mosaic2/800/800', // Festival Spotlight
         size: 'small'
     },
     {
         title: 'GLOBAL REACH',
         subtitle: 'DISCOVER WORLDWIDE',
-        img: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&auto=format&fit=crop', // Live Music Stage
+        img: 'https://picsum.photos/seed/mosaic3/800/800', // Live Music Stage
         size: 'small'
     }
 ];

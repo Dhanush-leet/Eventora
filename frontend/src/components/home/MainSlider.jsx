@@ -9,21 +9,21 @@ const slides = [
         subtitle: "STAGED FOR EXCELLENCE",
         type: "video",
         url: "https://assets.mixkit.co/videos/preview/mixkit-crowd-in-a-concert-15183-large.mp4",
-        fallback: "https://images.unsplash.com/photo-1540039155732-6761b54cbaca?w=1600&auto=format&fit=crop"
+        fallback: "https://picsum.photos/seed/slide1/1600/900"
     },
     {
         id: 2,
         title: "GLOBAL DISCOVERY",
         subtitle: "YOUR TRAVEL BUDDY FOR EVENTS",
         type: "image",
-        url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&auto=format&fit=crop"
+        url: "https://picsum.photos/seed/slide2/1600/900"
     },
     {
         id: 3,
         title: "BESPOKE EXPERIENCES",
         subtitle: "CURATED BY WORLD EXPERTS",
         type: "image",
-        url: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1600&auto=format&fit=crop"
+        url: "https://picsum.photos/seed/slide3/1600/900"
     }
 ];
 
