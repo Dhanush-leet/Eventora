@@ -2,9 +2,10 @@ CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email VARCHAR(255) UNIQUE NOT NULL,
     name VARCHAR(255) NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255),
     phone VARCHAR(20),
     profile_image_url VARCHAR(500),
+    provider VARCHAR(50) DEFAULT 'LOCAL',
     role VARCHAR(50) DEFAULT 'USER' CHECK (role IN ('USER', 'ADMIN', 'VENDOR')),
     is_verified BOOLEAN DEFAULT FALSE,
     verification_token VARCHAR(500),
@@ -163,4 +164,11 @@ CREATE TABLE analytics_snapshots (
     fraud_blocked_count INTEGER,
     predicted_final_revenue DECIMAL(12, 2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE refresh_tokens (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    token VARCHAR(500) UNIQUE NOT NULL,
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    expiry_date TIMESTAMP NOT NULL
 );

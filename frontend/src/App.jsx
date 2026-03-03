@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import OAuthSuccess from './pages/OAuthSuccess';
+import Dashboard from './pages/Dashboard';
 import Lenis from 'lenis';
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
       <div className="min-h-screen bg-white selection:bg-at-red selection:text-white transition-colors duration-500">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/oauth-success" element={<OAuthSuccess />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>

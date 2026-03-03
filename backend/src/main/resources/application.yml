@@ -2,9 +2,9 @@ spring:
   application:
     name: eventora
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/eventora_db}
-    username: ${SPRING_DATASOURCE_USERNAME:eventora_user}
-    password: ${SPRING_DATASOURCE_PASSWORD:password}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -14,6 +14,17 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 516615796065-9thjqd0dp4ed70147m837jkjtbhl5b4o.apps.googleusercontent.com
+            client-secret: ${GOOGLE_CLIENT_SECRET:YOUR_REAL_CLIENT_SECRET}
+            scope:
+              - openid
+              - profile
+              - email
   data:
     redis:
       host: ${SPRING_REDIS_HOST:localhost}
@@ -21,11 +32,16 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
+    clean-disabled: false
+    clean-on-validation-error: true
+
+logging:
+  level:
+    org.springframework.security: DEBUG
 
 jwt:
-  secret: ${JWT_SECRET:your_very_secure_jwt_secret_key_that_is_long_enough_for_hs256}
-  expiration: 900000 # 15 minutes
-  refresh-expiration: 604800000 # 7 days
+  secret: your_super_secret_jwt_key_which_should_be_long
+  expiration: 86400000
 
 razorpay:
   key-id: ${RAZORPAY_KEY_ID:fake_id}

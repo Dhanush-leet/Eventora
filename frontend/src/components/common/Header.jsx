@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Search, MapPin, User, Menu, X, ChevronDown, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { AuthModal } from './AuthModal';
 
 export const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -42,7 +44,10 @@ export const Header = () => {
                     </div>
 
                     <div className="flex items-center gap-6">
-                        <button className="hidden md:block w-5 h-5 text-black hover:text-[#E31B23] transition-all">
+                        <button
+                            className="hidden md:block w-5 h-5 text-black hover:text-[#E31B23] transition-all"
+                            onClick={() => setIsAuthModalOpen(true)}
+                        >
                             <User size={20} />
                         </button>
                         <button className="relative w-5 h-5 text-black hover:text-[#E31B23] transition-all">
@@ -88,6 +93,11 @@ export const Header = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            <AuthModal
+                isOpen={isAuthModalOpen}
+                onClose={() => setIsAuthModalOpen(false)}
+            />
         </nav>
     );
 };
