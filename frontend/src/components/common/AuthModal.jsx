@@ -1,13 +1,65 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Mail, Lock, User as UserIcon } from 'lucide-react';
+import { X, Mail, Lock, User as UserIcon, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
+import axios from 'axios';
+
+// Configure axios defaults
+axios.defaults.withCredentials = true;
+const API_BASE_URL = 'http://localhost:8080/api/auth';
 
 export const AuthModal = ({ isOpen, onClose }) => {
     const [activeTab, setActiveTab] = useState('login'); // 'login' or 'signup'
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+    });
+
+    const handleInputChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        if (error) setError('');
+    };
 
     const handleGoogleLogin = () => {
-        // Redirect to backend OAuth2 endpoint
         window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError('');
+        setSuccess('');
+
+        try {
+            if (activeTab === 'signup') {
+                const response = await axios.post(`${API_BASE_URL}/register`, {
+                    name: formData.name,
+                    email: formData.email,
+                    password: formData.password
+                });
+                setSuccess('Account created! You can now log in.');
+                setActiveTab('login');
+                setFormData({ ...formData, password: '' });
+            } else {
+                const response = await axios.post(`${API_BASE_URL}/login`, {
+                    email: formData.email,
+                    password: formData.password
+                });
+                setSuccess('Welcome back! Entering The Pulse...');
+                // Redirect or update app state
+                setTimeout(() => {
+                    window.location.href = '/dashboard';
+                }, 1500);
+            }
+        } catch (err) {
+            console.error('Auth error:', err);
+            setError(err.response?.data?.message || err.response?.data || 'An error occurred. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -70,8 +122,34 @@ export const AuthModal = ({ isOpen, onClose }) => {
                                 />
                             </div>
 
+                            {/* Error/Success Messages */}
+                            <AnimatePresence>
+                                {error && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-xl flex items-center gap-3 text-red-400 text-sm"
+                                    >
+                                        <AlertCircle size={18} />
+                                        {error}
+                                    </motion.div>
+                                )}
+                                {success && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        className="mb-6 p-4 bg-green-500/10 border border-green-500/50 rounded-xl flex items-center gap-3 text-green-400 text-sm"
+                                    >
+                                        <CheckCircle2 size={18} />
+                                        {success}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+
                             {/* Forms */}
-                            <div className="flex flex-col gap-5 mb-8 w-full">
+                            <form onSubmit={handleSubmit} className="flex flex-col gap-5 mb-8 w-full">
                                 {activeTab === 'signup' && (
                                     <div className="relative">
                                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -79,7 +157,11 @@ export const AuthModal = ({ isOpen, onClose }) => {
                                         </div>
                                         <input
                                             type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
                                             placeholder="Full Name"
+                                            required
                                             className="w-full bg-black/20 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder-white/40 outline-none focus:border-[#E31B23] focus:ring-1 focus:ring-[#E31B23] transition-all"
                                         />
                                     </div>
@@ -91,7 +173,11 @@ export const AuthModal = ({ isOpen, onClose }) => {
                                     </div>
                                     <input
                                         type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
                                         placeholder="Email Address"
+                                        required
                                         className="w-full bg-black/20 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder-white/40 outline-none focus:border-[#E31B23] focus:ring-1 focus:ring-[#E31B23] transition-all"
                                     />
                                 </div>
@@ -102,7 +188,11 @@ export const AuthModal = ({ isOpen, onClose }) => {
                                     </div>
                                     <input
                                         type="password"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleInputChange}
                                         placeholder="Password"
+                                        required
                                         className="w-full bg-black/20 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder-white/40 outline-none focus:border-[#E31B23] focus:ring-1 focus:ring-[#E31B23] transition-all"
                                     />
                                 </div>
@@ -113,10 +203,14 @@ export const AuthModal = ({ isOpen, onClose }) => {
                                     </div>
                                 )}
 
-                                <button className="w-full py-4 mt-2 bg-[#E31B23] hover:bg-[#c9181f] text-white rounded-xl font-black text-sm tracking-widest uppercase shadow-lg shadow-[#E31B23]/30 hover:shadow-[#E31B23]/50 hover:scale-[1.02] transition-all duration-300">
-                                    {activeTab === 'login' ? 'Access The Pulse' : 'Join The Pulse'}
+                                <button
+                                    type="submit"
+                                    disabled={isLoading}
+                                    className="w-full py-4 mt-2 bg-[#E31B23] hover:bg-[#c9181f] disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl font-black text-sm tracking-widest uppercase shadow-lg shadow-[#E31B23]/30 hover:shadow-[#E31B23]/50 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2"
+                                >
+                                    {isLoading ? <Loader2 className="animate-spin" size={20} /> : (activeTab === 'login' ? 'Access The Pulse' : 'Join The Pulse')}
                                 </button>
-                            </div>
+                            </form>
 
                             {/* Divider */}
                             <div className="flex items-center gap-4 mb-8">
