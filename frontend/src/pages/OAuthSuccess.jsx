@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/authStore";
 
 const OAuthSuccess = () => {
     const navigate = useNavigate();
+    const loadUser = useAuthStore(state => state.loadUser);
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
@@ -10,9 +12,13 @@ const OAuthSuccess = () => {
 
         if (token) {
             localStorage.setItem("token", token);
-            navigate("/dashboard");
+            loadUser().then(() => {
+                navigate("/dashboard");
+            });
         } else {
-            navigate("/");
+            loadUser().then(() => {
+                navigate("/");
+            });
         }
     }, [navigate]);
 

@@ -1,0 +1,222 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.eventora:backend >------------------------
+[INFO] Building EVENTORA 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ backend ---
+[INFO] Deleting C:\Users\Dhanush.G\Downloads\EVENTORA\backend\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ backend ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 10 source files with javac [debug release 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/UserController.java:[3,27] cannot find symbol
+  symbol:   class User
+  location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/UserController.java:[4,31] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.EVENTORA.repository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/UserController.java:[15,19] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.EVENTORA.controller.UserController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/UserController.java:[17,27] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.EVENTORA.controller.UserController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/UserController.java:[22,27] cannot find symbol
+  symbol:   class User
+  location: class com.EVENTORA.controller.UserController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[4,27] cannot find symbol
+  symbol:   class User
+  location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[5,31] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.EVENTORA.repository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[8,28] cannot find symbol
+  symbol:   class UserService
+  location: package com.EVENTORA.service
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[25,19] cannot find symbol
+  symbol:   class UserService
+  location: class com.EVENTORA.controller.AuthController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/service/RefreshTokenService.java:[4,27] cannot find symbol
+  symbol:   class User
+  location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/service/RefreshTokenService.java:[6,31] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.EVENTORA.repository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[28,19] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.EVENTORA.controller.AuthController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[30,72] cannot find symbol
+  symbol:   class UserService
+  location: class com.EVENTORA.controller.AuthController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[31,71] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.EVENTORA.controller.AuthController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/repository/RefreshTokenRepository.java:[4,27] cannot find symbol
+  symbol:   class User
+  location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/service/RefreshTokenService.java:[23,38] cannot find symbol
+  symbol:   class User
+  location: class com.EVENTORA.service.RefreshTokenService
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/service/RefreshTokenService.java:[58,31] cannot find symbol
+  symbol:   class User
+  location: class com.EVENTORA.service.RefreshTokenService
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/repository/RefreshTokenRepository.java:[15,39] cannot find symbol
+  symbol:   class User
+  location: interface com.EVENTORA.repository.RefreshTokenRepository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/repository/RefreshTokenRepository.java:[17,22] cannot find symbol
+  symbol:   class User
+  location: interface com.EVENTORA.repository.RefreshTokenRepository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/domain/RefreshToken.java:[26,13] cannot find symbol
+  symbol:   class User
+  location: class com.EVENTORA.domain.RefreshToken
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/domain/RefreshToken.java:[26,18] cannot find symbol
+  symbol:   class User
+  location: class com.EVENTORA.domain.RefreshToken
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/domain/RefreshToken.java:[11,1] cannot find symbol
+  symbol:   class User
+  location: class com.EVENTORA.domain.RefreshToken
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/domain/RefreshToken.java:[13,1] cannot find symbol
+  symbol:   class User
+  location: class com.EVENTORA.domain.RefreshToken
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/domain/RefreshToken.java:[14,1] cannot find symbol
+  symbol:   class User
+  location: class com.EVENTORA.domain.RefreshToken.RefreshTokenBuilder
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/OAuthSuccessHandler.java:[3,27] cannot find symbol
+  symbol:   class User
+  location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/OAuthSuccessHandler.java:[5,28] cannot find symbol
+  symbol:   class UserService
+  location: package com.EVENTORA.service
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/OAuthSuccessHandler.java:[21,19] cannot find symbol
+  symbol:   class UserService
+  location: class com.EVENTORA.security.OAuthSuccessHandler
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/OAuthSuccessHandler.java:[24,49] cannot find symbol
+  symbol:   class UserService
+  location: class com.EVENTORA.security.OAuthSuccessHandler
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/CustomUserDetailsService.java:[3,27] cannot find symbol
+  symbol:   class User
+  location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/CustomUserDetailsService.java:[4,31] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.EVENTORA.repository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/CustomUserDetailsService.java:[19,13] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.EVENTORA.security.CustomUserDetailsService
+[INFO] 31 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.166 s
+[INFO] Finished at: 2026-03-02T19:29:20+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project backend: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/UserController.java:[3,27] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/UserController.java:[4,31] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.EVENTORA.repository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/UserController.java:[15,19] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.EVENTORA.controller.UserController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/UserController.java:[17,27] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.EVENTORA.controller.UserController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/UserController.java:[22,27] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.EVENTORA.controller.UserController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[4,27] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[5,31] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.EVENTORA.repository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[8,28] cannot find symbol
+[ERROR]   symbol:   class UserService
+[ERROR]   location: package com.EVENTORA.service
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[25,19] cannot find symbol
+[ERROR]   symbol:   class UserService
+[ERROR]   location: class com.EVENTORA.controller.AuthController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/service/RefreshTokenService.java:[4,27] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/service/RefreshTokenService.java:[6,31] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.EVENTORA.repository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[28,19] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.EVENTORA.controller.AuthController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[30,72] cannot find symbol
+[ERROR]   symbol:   class UserService
+[ERROR]   location: class com.EVENTORA.controller.AuthController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/controller/AuthController.java:[31,71] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.EVENTORA.controller.AuthController
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/repository/RefreshTokenRepository.java:[4,27] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/service/RefreshTokenService.java:[23,38] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.EVENTORA.service.RefreshTokenService
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/service/RefreshTokenService.java:[58,31] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.EVENTORA.service.RefreshTokenService
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/repository/RefreshTokenRepository.java:[15,39] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: interface com.EVENTORA.repository.RefreshTokenRepository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/repository/RefreshTokenRepository.java:[17,22] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: interface com.EVENTORA.repository.RefreshTokenRepository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/domain/RefreshToken.java:[26,13] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.EVENTORA.domain.RefreshToken
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/domain/RefreshToken.java:[26,18] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.EVENTORA.domain.RefreshToken
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/domain/RefreshToken.java:[11,1] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.EVENTORA.domain.RefreshToken
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/domain/RefreshToken.java:[13,1] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.EVENTORA.domain.RefreshToken
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/domain/RefreshToken.java:[14,1] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.EVENTORA.domain.RefreshToken.RefreshTokenBuilder
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/OAuthSuccessHandler.java:[3,27] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/OAuthSuccessHandler.java:[5,28] cannot find symbol
+[ERROR]   symbol:   class UserService
+[ERROR]   location: package com.EVENTORA.service
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/OAuthSuccessHandler.java:[21,19] cannot find symbol
+[ERROR]   symbol:   class UserService
+[ERROR]   location: class com.EVENTORA.security.OAuthSuccessHandler
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/OAuthSuccessHandler.java:[24,49] cannot find symbol
+[ERROR]   symbol:   class UserService
+[ERROR]   location: class com.EVENTORA.security.OAuthSuccessHandler
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/CustomUserDetailsService.java:[3,27] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: package com.EVENTORA.domain
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/CustomUserDetailsService.java:[4,31] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.EVENTORA.repository
+[ERROR] /C:/Users/Dhanush.G/Downloads/EVENTORA/backend/src/main/java/com/EVENTORA/security/CustomUserDetailsService.java:[19,13] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.EVENTORA.security.CustomUserDetailsService
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

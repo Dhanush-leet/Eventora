@@ -50,6 +50,8 @@ public class SecurityConfig {
                         .requestMatchers("/", "/error", "/api/auth/**", "/login**", "/oauth2/**", "/swagger-ui/**",
                                 "/v3/api-docs/**")
                         .permitAll()
+                        .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/events", "/api/events/**", "/api/events/filters", "/api/movies", "/api/movies/**")
+                        .permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN", "VENDOR")
                         .anyRequest().authenticated())

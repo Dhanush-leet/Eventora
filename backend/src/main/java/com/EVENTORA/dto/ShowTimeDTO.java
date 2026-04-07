@@ -1,0 +1,13 @@
+package com.EVENTORA.dto;
+
+import lombok.Builder;
+import lombok.Data;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Data
+@Builder
+public class ShowTimeDTO {
+    private UUID showId;
+    private LocalDateTime showTime;
+}

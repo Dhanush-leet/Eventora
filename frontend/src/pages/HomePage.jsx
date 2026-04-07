@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '../components/common/Header';
+import Header from '../components/common/Header';
 import { MainSlider } from '../components/home/MainSlider';
 import { MosaicSection } from '../components/home/MosaicSection';
 import { ContentSection } from '../components/home/ContentSection';

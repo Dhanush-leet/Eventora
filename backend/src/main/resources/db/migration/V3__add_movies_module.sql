@@ -1,0 +1,30 @@
+CREATE TABLE IF NOT EXISTS movies (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title VARCHAR(255) NOT NULL,
+    genre VARCHAR(255) NOT NULL,
+    language VARCHAR(100) NOT NULL,
+    duration INTEGER NOT NULL,
+    rating NUMERIC(3, 1) DEFAULT 0.0,
+    poster_url TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS theatres (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(255) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    address TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS movie_shows (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    movie_id UUID REFERENCES movies(id) ON DELETE CASCADE,
+    theatre_id UUID REFERENCES theatres(id) ON DELETE CASCADE,
+    show_time TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
