@@ -5,26 +5,26 @@ const items = [
     {
         title: 'THE BRAND LIVE',
         subtitle: 'EXPLORE OUR STORY',
-        img: 'https://picsum.photos/seed/mosaic1/1200/800', // Concert Crowd Unsplash
+        img: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1200&h=800&fit=crop&auto=format',
         size: 'large'
     },
     {
         title: 'TRENDING CATEGORIES',
         subtitle: 'MUST HAVE EVENTS',
-        img: 'https://picsum.photos/seed/mosaic2/800/800', // Festival Spotlight
+        img: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&h=800&fit=crop&auto=format',
         size: 'small'
     },
     {
         title: 'GLOBAL REACH',
         subtitle: 'DISCOVER WORLDWIDE',
-        img: 'https://picsum.photos/seed/mosaic3/800/800', // Live Music Stage
+        img: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&h=800&fit=crop&auto=format',
         size: 'small'
     }
 ];
 
 export const MosaicSection = () => {
     return (
-        <div className="max-w-7xl mx-auto px-4 py-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="max-w-7xl mx-auto px-8 py-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {items.map((item, i) => (
                 <motion.div
                     key={i}

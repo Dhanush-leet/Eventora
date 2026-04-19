@@ -37,7 +37,7 @@ const Card = ({ title, sub, genre, img, rating }) => (
         </div>
 
         <div className="flex flex-col px-6">
-            <h4 className="font-display font-black text-3xl text-[#111111] group-hover:text-[#E31B23] transition-all duration-500 uppercase italic tracking-tighter leading-none mb-3">
+            <h4 className="font-display font-black text-3xl text-white group-hover:text-[#E31B23] transition-all duration-500 uppercase italic tracking-tighter leading-none mb-3">
                 {title}
             </h4>
             <div className="flex items-center gap-4">
