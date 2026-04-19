@@ -3,7 +3,7 @@ import Header from '../components/common/Header';
 import { fetchMovies, fetchMovieTheatres } from '../services/api';
 import { useLocationStore } from '../store/locationStore';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, Clock, Calendar, Star, ChevronDown, ChevronUp, Play } from 'lucide-react';
+import { Search, MapPin, Clock, Calendar, Star, ChevonDown, ChevronUp, Play } from 'lucide-react';
 
 export default function MoviesPage() {
     const { location } = useLocationStore();
