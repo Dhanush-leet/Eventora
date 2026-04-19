@@ -8,13 +8,14 @@ export default function HeroSection() {
     offset: ['start start', 'end start'],
   });
 
+  // Parallax layers at different speeds
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 220]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, 130]);
   const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
 
   return (
     <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#0f0e0d]">
-      {/* Parallax background image */}
+      {/* Background image – moves slowest (parallax background) */}
       <motion.div
         className="absolute inset-0 w-full h-[120%] top-[-10%]"
         style={{ y: bgY }}
@@ -25,14 +26,16 @@ export default function HeroSection() {
           className="w-full h-full object-cover"
           loading="eager"
         />
+        {/* Dark overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-[#0f0e0d]" />
       </motion.div>
 
-      {/* Hero content */}
+      {/* Hero content – fades & moves up as user scrolls */}
       <motion.div
         className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
         style={{ y: textY, opacity }}
       >
+        {/* Eyebrow label */}
         <motion.span
           className="text-white/60 text-xs font-black tracking-[0.5em] uppercase mb-8 block"
           initial={{ opacity: 0, y: 20 }}
@@ -42,9 +45,9 @@ export default function HeroSection() {
           Premium Event Discovery
         </motion.span>
 
+        {/* Main title */}
         <motion.h1
-          className="text-white font-black italic tracking-tighter leading-none uppercase mb-6"
-          style={{ fontSize: 'clamp(4rem, 12vw, 10rem)' }}
+          className="text-white text-[clamp(4rem,12vw,10rem)] font-black italic tracking-tighter leading-none uppercase mb-6"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
@@ -52,6 +55,7 @@ export default function HeroSection() {
           EVENTORA
         </motion.h1>
 
+        {/* Subtitle */}
         <motion.p
           className="text-white/70 text-lg md:text-2xl font-medium max-w-xl leading-relaxed mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -61,6 +65,7 @@ export default function HeroSection() {
           Staged for Excellence. Curated for Discovery.
         </motion.p>
 
+        {/* CTA Buttons */}
         <motion.div
           className="flex flex-col sm:flex-row gap-5"
           initial={{ opacity: 0, y: 30 }}
@@ -82,7 +87,7 @@ export default function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll hint */}
+      {/* Scroll hint – bouncing arrow */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50"
         initial={{ opacity: 0 }}

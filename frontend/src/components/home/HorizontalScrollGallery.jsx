@@ -1,5 +1,6 @@
-import React, { useRef, useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const EVENT_IMAGES = [
@@ -30,7 +31,7 @@ const EVENT_IMAGES = [
   },
 ];
 
-function GalleryCard({ image, index }) {
+function GalleryCard({ image, index, isVisible }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -38,13 +39,13 @@ function GalleryCard({ image, index }) {
       className="flex-shrink-0 relative overflow-hidden rounded-sm cursor-pointer"
       style={{ width: '360px', height: '480px' }}
       initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.7, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ scale: 1.02 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      {/* Image */}
       <motion.img
         src={image.src}
         alt={image.title}
@@ -54,22 +55,24 @@ function GalleryCard({ image, index }) {
         loading="lazy"
       />
 
+      {/* Gradient overlay */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
         animate={{ opacity: hovered ? 1 : 0.6 }}
         transition={{ duration: 0.4 }}
       />
 
+      {/* Category badge */}
       <motion.span
         className="absolute top-5 left-5 text-[9px] font-black tracking-[0.4em] uppercase bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-sm"
         initial={{ x: -20, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: index * 0.06 + 0.3, duration: 0.5 }}
+        animate={isVisible ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
+        transition={{ delay: index * 0.08 + 0.3, duration: 0.5 }}
       >
         {image.category}
       </motion.span>
 
+      {/* Title */}
       <div className="absolute bottom-8 left-7 right-7">
         <motion.h3
           className="text-white text-3xl font-black italic tracking-tighter uppercase leading-tight"
@@ -93,6 +96,7 @@ export default function HorizontalScrollGallery({ title = 'EXPLORE EVENTS' }) {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const { ref: inViewRef, inView } = useInView({ threshold: 0.15, triggerOnce: true });
 
   const updateScrollState = useCallback(() => {
     const el = scrollRef.current;
@@ -103,12 +107,21 @@ export default function HorizontalScrollGallery({ title = 'EXPLORE EVENTS' }) {
     setScrollProgress(maxScroll > 0 ? el.scrollLeft / maxScroll : 0);
   }, []);
 
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.addEventListener('scroll', updateScrollState, { passive: true });
+    updateScrollState();
+    return () => el.removeEventListener('scroll', updateScrollState);
+  }, [updateScrollState]);
+
   const scrollBy = (dir) => {
     scrollRef.current?.scrollBy({ left: dir * 400, behavior: 'smooth' });
   };
 
   return (
-    <section className="py-24 bg-[#0f0e0d] overflow-hidden">
+    <section ref={inViewRef} className="py-24 bg-[#0f0e0d] overflow-hidden">
+      {/* Section header */}
       <div className="max-w-7xl mx-auto px-8 mb-14 flex items-end justify-between">
         <div>
           <div className="flex items-center gap-4 mb-5">
@@ -120,6 +133,7 @@ export default function HorizontalScrollGallery({ title = 'EXPLORE EVENTS' }) {
           </h2>
         </div>
 
+        {/* Prev / Next */}
         <div className="hidden md:flex gap-3">
           <button
             onClick={() => scrollBy(-1)}
@@ -138,21 +152,19 @@ export default function HorizontalScrollGallery({ title = 'EXPLORE EVENTS' }) {
         </div>
       </div>
 
+      {/* Scrollable gallery track */}
       <div
         ref={scrollRef}
         className="flex gap-5 px-8 overflow-x-auto scrollbar-hide pb-6"
-        style={{ scrollSnapType: 'x mandatory', cursor: 'grab' }}
-        onScroll={updateScrollState}
+        style={{ cursor: 'grab', scrollSnapType: 'x mandatory' }}
         onMouseDown={(e) => {
           const el = scrollRef.current;
           const startX = e.pageX - el.offsetLeft;
           const startScroll = el.scrollLeft;
-          el.style.cursor = 'grabbing';
           const onMove = (ev) => {
             el.scrollLeft = startScroll - (ev.pageX - el.offsetLeft - startX);
           };
           const onUp = () => {
-            el.style.cursor = 'grab';
             window.removeEventListener('mousemove', onMove);
             window.removeEventListener('mouseup', onUp);
           };
@@ -162,22 +174,24 @@ export default function HorizontalScrollGallery({ title = 'EXPLORE EVENTS' }) {
       >
         {EVENT_IMAGES.map((img, i) => (
           <div key={i} style={{ scrollSnapAlign: 'start' }}>
-            <GalleryCard image={img} index={i} />
+            <GalleryCard image={img} index={i} isVisible={inView} />
           </div>
         ))}
       </div>
 
+      {/* Progress bar */}
       <div className="max-w-7xl mx-auto px-8 mt-10">
         <div className="w-full h-[1px] bg-white/10 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-[#E31B23] rounded-full"
-            style={{ width: `${scrollProgress * 100}%` }}
+            className="h-full bg-[#E31B23] rounded-full origin-left"
+            style={{ scaleX: scrollProgress }}
+            transition={{ duration: 0.1 }}
           />
         </div>
         <div className="flex justify-between mt-3">
           <span className="text-white/30 text-[9px] font-black tracking-[0.4em] uppercase">Gallery</span>
           <span className="text-white/30 text-[9px] font-black tracking-[0.4em] uppercase">
-            {Math.min(Math.round(scrollProgress * EVENT_IMAGES.length) + 1, EVENT_IMAGES.length)} / {EVENT_IMAGES.length}
+            {Math.round(scrollProgress * EVENT_IMAGES.length) + 1} / {EVENT_IMAGES.length}
           </span>
         </div>
       </div>
