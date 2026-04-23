@@ -52,9 +52,13 @@ public class SecurityConfig {
                         .permitAll()
                         .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/events", "/api/events/**", "/api/events/filters", "/api/movies", "/api/movies/**")
                         .permitAll()
+                        .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/payments/webhook")
+                        .permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN", "VENDOR")
                         .anyRequest().authenticated())
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint(new org.springframework.security.web.authentication.HttpStatusEntryPoint(org.springframework.http.HttpStatus.UNAUTHORIZED)))
                 .oauth2Login(oauth -> oauth
                         .successHandler(oAuthSuccessHandler))
                 .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

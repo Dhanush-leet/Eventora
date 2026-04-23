@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,7 +26,49 @@
   }
 
   body {
-    @apply bg-background text-text-primary font-body antialiased selection:bg-zinc-900 selection:text-white overscroll-none overflow-x-hidden;
+    background-color: #0B0F1A;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply selection:bg-[#E31B23] selection:text-white overscroll-none overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-2xl border border-white/10 transition-all duration-500 hover:bg-white/10 hover:border-white/20;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-elegant {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .text-modern {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .magnetic-button {
+    @apply transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  .cinematic-gradient {
+    background: linear-gradient(180deg, rgba(11, 15, 26, 0) 0%, rgba(11, 15, 26, 0.8) 70%, rgba(11, 15, 26, 1) 100%);
+  }
+
+  .neo-blur {
+    backdrop-filter: blur(40px) saturate(180%);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .stagger-load > * {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 }
 
@@ -53,6 +97,14 @@
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
-.glass-card {
-  @apply bg-white/20 backdrop-blur-xl border border-white/30 shadow-2xl;
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes slide-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

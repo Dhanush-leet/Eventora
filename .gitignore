@@ -1,0 +1,6 @@
+
+Redis/
+Redis.zip
+backend/.env
+frontend/.env
+*.log

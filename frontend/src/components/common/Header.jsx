@@ -42,10 +42,10 @@ const Header = () => {
                     {/* Desktop Nav */}
                     <div className="hidden lg:flex items-center gap-6 xl:gap-10 text-[11px] font-black uppercase tracking-[0.2em] text-black">
                         <a href="/movies" className="flex items-center gap-1 hover:text-[#E31B23] transition-colors">Movies <ChevronDown size={14} /></a>
-                        <a href="#" className="flex items-center gap-1 hover:text-[#E31B23] transition-colors">Stream <ChevronDown size={14} /></a>
-                        <a href="#" className="flex items-center gap-1 hover:text-[#E31B23] transition-colors">Events <ChevronDown size={14} /></a>
-                        <a href="#" className="flex items-center gap-1 hover:text-[#E31B23] transition-colors">Plays <ChevronDown size={14} /></a>
-                        <a href="#" className="flex items-center gap-1 hover:text-[#E31B23] transition-colors">Sports <ChevronDown size={14} /></a>
+                        <a href="/stream" className="flex items-center gap-1 hover:text-[#E31B23] transition-colors">Stream <ChevronDown size={14} /></a>
+                        <a href="/events" className="flex items-center gap-1 hover:text-[#E31B23] transition-colors">Events <ChevronDown size={14} /></a>
+                        <a href="/plays" className="flex items-center gap-1 hover:text-[#E31B23] transition-colors">Plays <ChevronDown size={14} /></a>
+                        <a href="/sports" className="flex items-center gap-1 hover:text-[#E31B23] transition-colors">Sports <ChevronDown size={14} /></a>
                     </div>
                 </div>
 
@@ -193,11 +193,11 @@ const Header = () => {
                         </div>
 
                         <div className="flex flex-col gap-8 text-3xl font-black italic text-black uppercase mt-12">
-                            <a href="#">Movies</a>
-                            <a href="#">Events</a>
-                            <a href="#">Sports</a>
-                            <a href="#">Plays</a>
-                            <a href="#">Stream</a>
+                            <a href="/movies">Movies</a>
+                            <a href="/events">Events</a>
+                            <a href="/sports">Sports</a>
+                            <a href="/plays">Plays</a>
+                            <a href="/stream">Stream</a>
                         </div>
                     </motion.div>
                 )}

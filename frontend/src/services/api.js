@@ -110,4 +110,20 @@ export const fetchProfile = () =>
 export const logout = () =>
     api.post('/api/user/logout').then(r => r.data);
 
+// ========================
+// Payment APIs
+// ========================
+
+export const createPaymentOrder = (bookingId) =>
+    api.post('/api/payments/orders', { bookingId }).then(r => r.data);
+
+export const verifyPayment = (data) =>
+    api.post('/api/payments/verify', data).then(r => r.data);
+
+export const verifyManualPayment = (bookingId) =>
+    api.post(`/api/payments/verify-manual/${bookingId}`).then(r => r.data);
+
+export const getPaymentStatus = (bookingId) =>
+    api.get(`/api/payments/status/${bookingId}`).then(r => r.data);
+
 export default api;

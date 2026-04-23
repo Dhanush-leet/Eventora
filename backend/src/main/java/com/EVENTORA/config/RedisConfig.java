@@ -6,6 +6,14 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+/**
+ * RedisConfig — provides a single RedisTemplate<String, String> used across:
+ *
+ *   Seat Locking:    seat_lock:{seatId}            → userId       (TTL = 5 min)
+ *   Payment Orders:  payment:order:{razorpayOrderId} → bookingId   (TTL = 15 min)
+ *   Payment Status:  payment:status:{bookingId}      → hash map    (TTL = 30 min)
+ *   Movie Cache:     movies:all / movies:location:*  → JSON list   (TTL = 10 min)
+ */
 @Configuration
 public class RedisConfig {
 

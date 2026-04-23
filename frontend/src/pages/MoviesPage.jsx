@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/common/Header';
+import ElegantHero from '../components/discovery/ElegantHero';
+import ElegantCard from '../components/discovery/ElegantCard';
 import { fetchMovies, fetchMovieTheatres } from '../services/api';
 import { useLocationStore } from '../store/locationStore';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, Clock, Calendar, Star, ChevonDown, ChevronUp, Play } from 'lucide-react';
+import { Search, MapPin, Clock, Calendar, Star, ChevronDown, ChevronUp, Play, SlidersHorizontal } from 'lucide-react';
 
 export default function MoviesPage() {
     const { location } = useLocationStore();
@@ -45,7 +47,6 @@ export default function MoviesPage() {
         setTheatresLoading(true);
         try {
             const data = await fetchMovieTheatres(movieId);
-            // Also filter theatres to match the selected location (if needed, though backend should ideally return all or local)
             setTheatres(data.filter(t => t.city === location || t.state === location));
         } catch (error) {
             console.error(error);
@@ -54,11 +55,9 @@ export default function MoviesPage() {
         }
     };
 
-    // Extract unique genres and languages for filters
     const genres = [...new Set(movies.map(m => m.genre))];
     const languages = [...new Set(movies.map(m => m.language))];
 
-    // Apply filters
     const filteredMovies = movies.filter(m => {
         const matchesSearch = m.title.toLowerCase().includes(search.toLowerCase());
         const matchesGenre = selectedGenre ? m.genre === selectedGenre : true;
@@ -69,31 +68,22 @@ export default function MoviesPage() {
     return (
         <div className="min-h-screen bg-[#0B0F1A] text-white">
             <Header />
-            <main className="pt-28 pb-32 max-w-7xl mx-auto px-6">
-                
-                {/* Header & Filters */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
-                    <div>
-                        <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter uppercase mb-2">Movies in <span className="text-[#E31B23]">{location}</span></h1>
-                        <p className="text-white/50 text-xs tracking-widest uppercase font-bold">Discover the ultimate cinematic pulse</p>
-                    </div>
+            
+            <ElegantHero 
+                title="Cinematic Pulse"
+                subtitle={`Discovery in ${location}`}
+                bgImage="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop"
+            />
 
+            <main className="max-w-[1600px] mx-auto px-6 md:px-12 pb-32 -mt-20 relative z-30">
+                
+                {/* Filter Bar */}
+                <div className="glass-card rounded-3xl p-4 md:p-6 mb-16 flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex flex-wrap items-center gap-4">
-                        <div className="relative">
-                            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" />
-                            <input 
-                                type="text"
-                                placeholder="Search movies..."
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                                className="bg-white/5 border border-white/10 rounded-full py-3 pl-12 pr-6 text-sm outline-none focus:border-[#E31B23] transition-colors"
-                            />
-                        </div>
-                        
                         <select 
                             value={selectedLanguage} 
                             onChange={(e) => setSelectedLanguage(e.target.value)}
-                            className="bg-white/5 border border-white/10 rounded-full py-3 px-6 text-sm outline-none appearance-none"
+                            className="bg-white/5 border border-white/10 rounded-full py-3 px-8 text-[10px] font-black uppercase tracking-widest outline-none appearance-none hover:bg-white/10 transition-colors"
                         >
                             <option value="" className="bg-[#111827]">All Languages</option>
                             {languages.map(l => <option key={l} value={l} className="bg-[#111827]">{l}</option>)}
@@ -102,57 +92,48 @@ export default function MoviesPage() {
                         <select 
                             value={selectedGenre} 
                             onChange={(e) => setSelectedGenre(e.target.value)}
-                            className="bg-white/5 border border-white/10 rounded-full py-3 px-6 text-sm outline-none appearance-none"
+                            className="bg-white/5 border border-white/10 rounded-full py-3 px-8 text-[10px] font-black uppercase tracking-widest outline-none appearance-none hover:bg-white/10 transition-colors"
                         >
                             <option value="" className="bg-[#111827]">All Genres</option>
                             {genres.map(g => <option key={g} value={g} className="bg-[#111827]">{g}</option>)}
                         </select>
                     </div>
+
+                    <div className="flex items-center gap-4 w-full md:w-auto">
+                        <div className="relative flex-grow md:w-80">
+                            <Search size={16} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/40" />
+                            <input 
+                                type="text"
+                                placeholder="Search the reels..."
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                className="w-full bg-white/5 border border-white/10 rounded-full py-4 pl-14 pr-6 text-xs font-bold outline-none focus:border-[#E31B23]/50 focus:bg-white/10 transition-all uppercase tracking-widest"
+                            />
+                        </div>
+                        <button className="p-4 bg-white/5 rounded-full hover:bg-[#E31B23] transition-colors group">
+                            <SlidersHorizontal size={18} className="text-white group-hover:scale-110 transition-transform" />
+                        </button>
+                    </div>
                 </div>
 
                 {loading ? (
-                    <div className="flex items-center justify-center py-32 text-[#E31B23]">
-                        <div className="w-12 h-12 border-4 border-[#E31B23] border-t-transparent rounded-full animate-spin" />
+                    <div className="h-96 flex flex-col items-center justify-center gap-6">
+                        <div className="w-16 h-16 border-4 border-[#E31B23] border-t-transparent rounded-full animate-spin shadow-2xl shadow-[#E31B23]/20" />
+                        <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#E31B23] animate-pulse">Scanning Reels...</span>
                     </div>
                 ) : filteredMovies.length === 0 ? (
-                    <div className="text-center py-32 text-white/50 text-xl font-bold tracking-widest uppercase">
-                        No movies found for {location}
+                    <div className="h-96 flex flex-col items-center justify-center text-center">
+                        <h2 className="text-elegant text-4xl mb-4 opacity-30 italic">No Reels Found</h2>
+                        <p className="text-white/40 text-xs font-bold uppercase tracking-[0.3em]">Cinemas are silent in {location}</p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-10">
                         {filteredMovies.map((movie) => (
                             <React.Fragment key={movie.id}>
-                                <div className="relative group flex flex-col">
-                                    <motion.div 
-                                        className={`relative overflow-hidden rounded-2xl aspect-[2/3] cursor-pointer shadow-2xl transition-all duration-500 ${expandedMovieId === movie.id ? 'ring-2 ring-[#E31B23] scale-[1.02]' : 'hover:scale-105'}`}
-                                        onClick={() => handleExpand(movie.id)}
-                                        layoutId={`movie-${movie.id}`}
-                                    >
-                                        <img src={movie.posterUrl} alt={movie.title} className="w-full h-full object-cover" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                                        
-                                        <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                                            <Star size={12} className="text-[#E31B23] fill-[#E31B23]" />
-                                            <span className="text-xs font-black">{movie.rating}</span>
-                                        </div>
-                                        
-                                        <div className="absolute bottom-6 left-6 right-6">
-                                            <h3 className="text-2xl font-black italic tracking-tight uppercase leading-none mb-2">{movie.title}</h3>
-                                            <div className="flex items-center gap-3 text-[10px] font-black uppercase text-white/60 tracking-widest">
-                                                <span>{movie.language}</span>
-                                                <span>•</span>
-                                                <span className="truncate">{movie.genre}</span>
-                                            </div>
-                                        </div>
-
-                                        {/* Play icon overlay */}
-                                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                            <div className="w-16 h-16 rounded-full bg-[#E31B23]/90 flex items-center justify-center backdrop-blur-sm shadow-2xl shadow-[#E31B23]/40">
-                                                <Play size={24} className="text-white fill-white ml-2" />
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                </div>
+                                <ElegantCard 
+                                    item={movie} 
+                                    onClick={() => handleExpand(movie.id)}
+                                />
 
                                 {/* Expanded Theatre Section */}
                                 <AnimatePresence>
@@ -161,47 +142,47 @@ export default function MoviesPage() {
                                             initial={{ opacity: 0, height: 0, marginTop: 0 }}
                                             animate={{ opacity: 1, height: 'auto', marginTop: 24, marginBottom: 24 }}
                                             exit={{ opacity: 0, height: 0, marginTop: 0, marginBottom: 0 }}
-                                            className="w-full bg-[#111827] rounded-3xl border border-white/10 shadow-2xl overflow-hidden col-span-1 md:col-span-2 lg:col-span-4 overflow-hidden"
-                                            style={{ gridColumn: '1 / -1' }} // span full width of the grid!
+                                            className="w-full bg-white/5 backdrop-blur-3xl rounded-[40px] border border-white/10 shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden col-span-1 md:col-span-2 lg:col-span-4 xl:col-span-5"
+                                            style={{ gridColumn: '1 / -1' }}
                                         >
-                                            <div className="p-8 md:p-12">
-                                                <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-8 border-b border-white/5">
+                                            <div className="p-10 md:p-16">
+                                                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-10 border-b border-white/5">
                                                     <div>
-                                                        <h4 className="text-4xl font-black italic uppercase text-white tracking-tighter mb-2">{movie.title}</h4>
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="px-3 py-1 bg-[#E31B23]/20 text-[#E31B23] rounded-md text-[10px] font-black uppercase tracking-widest">{movie.genre}</span>
-                                                            <span className="text-white/40 text-xs font-bold uppercase tracking-widest">{movie.duration} Mins</span>
+                                                        <h4 className="text-elegant text-5xl md:text-7xl font-black italic uppercase text-white tracking-tighter mb-4">{movie.title}</h4>
+                                                        <div className="flex items-center gap-4">
+                                                            <span className="px-5 py-2 bg-[#E31B23] text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-[#E31B23]/30">{movie.genre}</span>
+                                                            <span className="text-white/40 text-[10px] font-black uppercase tracking-[0.3em] ml-4">{movie.duration} Mins • {movie.language}</span>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 {theatresLoading ? (
-                                                    <div className="h-32 flex items-center justify-center">
-                                                        <div className="w-10 h-10 border-4 border-[#E31B23] border-t-transparent rounded-full animate-spin" />
+                                                    <div className="h-48 flex items-center justify-center">
+                                                        <div className="w-12 h-12 border-4 border-[#E31B23] border-t-transparent rounded-full animate-spin" />
                                                     </div>
                                                 ) : theatres.length === 0 ? (
-                                                    <div className="py-12 text-center text-white/30 text-sm font-bold tracking-widest uppercase bg-white/5 rounded-2xl border border-white/5">
-                                                        No shows available in <span className="text-white/80">{location}</span> currently.
+                                                    <div className="py-20 text-center text-white/20 text-sm font-black tracking-[0.5em] uppercase bg-white/2 rounded-[30px] border border-white/5">
+                                                        Curtain closed in <span className="text-[#E31B23]">{location}</span>.
                                                     </div>
                                                 ) : (
-                                                    <div className="flex flex-col gap-6">
+                                                    <div className="grid grid-cols-1 gap-8">
                                                         {theatres.map(theatre => (
-                                                            <div key={theatre.theatreId} className="flex flex-col md:flex-row md:items-stretch gap-0 bg-white/5 rounded-2xl border border-white/5 hover:border-white/20 transition-all overflow-hidden group">
-                                                                <div className="md:w-1/3 bg-black/20 p-6 md:p-8 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/5">
-                                                                    <h5 className="font-black text-xl uppercase tracking-tighter mb-3 group-hover:text-[#E31B23] transition-colors">{theatre.theatreName}</h5>
-                                                                    <div className="flex items-start gap-2 text-white/50 text-xs leading-relaxed max-w-[250px]">
-                                                                        <MapPin size={14} className="flex-shrink-0 mt-0.5 text-[#E31B23]" />
-                                                                        <span>{theatre.address}, {theatre.city}</span>
+                                                            <div key={theatre.theatreId} className="flex flex-col md:flex-row md:items-center justify-between p-8 md:p-10 bg-white/5 rounded-[30px] border border-white/5 hover:bg-white/10 transition-all group">
+                                                                <div className="mb-8 md:mb-0">
+                                                                    <h5 className="text-elegant text-2xl font-black italic uppercase tracking-tight mb-2 group-hover:text-[#E31B23] transition-colors">{theatre.theatreName}</h5>
+                                                                    <div className="flex items-center gap-2 text-white/40 text-[10px] font-bold uppercase tracking-widest">
+                                                                        <MapPin size={12} className="text-[#E31B23]" />
+                                                                        <span>{theatre.address}</span>
                                                                     </div>
                                                                 </div>
                                                                 
-                                                                <div className="flex flex-wrap items-center gap-4 p-6 md:p-8 md:w-2/3 bg-black/10">
+                                                                <div className="flex flex-wrap items-center gap-4">
                                                                     {theatre.shows.map(show => {
                                                                         const showTime = new Date(show.showTime);
                                                                         return (
                                                                             <button 
                                                                                 key={show.showId}
-                                                                                className="px-6 py-3 bg-transparent border border-[#00C853]/40 text-[#00C853] rounded-xl text-xs font-black tracking-[0.2em] hover:bg-[#00C853] hover:text-black hover:border-[#00C853] transition-all hover:scale-105 shadow-lg shadow-[#00C853]/10"
+                                                                                className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-2xl text-[10px] font-black tracking-[0.2em] hover:bg-[#E31B23] hover:border-[#E31B23] transition-all hover:scale-105 active:scale-95 shadow-xl"
                                                                             >
                                                                                 {showTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                                                             </button>

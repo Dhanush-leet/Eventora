@@ -7,34 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#FFFFFF',
-        surface: '#F8F8F8',
-        surfaceAlt: '#FFFFFF',
-        at: {
-          red: '#E31B23', // American Tourister Red
-          black: '#111111',
-          gray: '#666666',
-          lightGray: '#EBEBEB'
-        },
+        background: '#0B0F1A',
+        surface: '#111827',
         accent: {
           primary: '#E31B23',
           secondary: '#7C3AED',
-          gold: '#FFD700'
-        },
-        text: {
-          primary: '#111111',
-          secondary: '#666666',
-          muted: '#999999'
+          cyan: '#06B6D4'
         }
       },
       fontFamily: {
+        elegant: ['Playfair Display', 'serif'],
+        modern: ['Outfit', 'sans-serif'],
         display: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', 'sans-serif']
       },
       boxShadow: {
-        bms: '0 4px 10px rgba(0,0,0,0.05)',
-        elevate: '0 25px 50px -12px rgba(0, 0, 0, 0.1)',
-        at: '0 10px 30px rgba(0,0,0,0.05)'
+        premium: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+        glass: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
       },
       letterSpacing: {
         widest: '.2em',

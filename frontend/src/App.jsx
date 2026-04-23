@@ -9,6 +9,8 @@ import EventDetailPage from './pages/EventDetailPage';
 import SeatSelectionPage from './pages/SeatSelectionPage';
 import BookingConfirmationPage from './pages/BookingConfirmationPage';
 import MoviesPage from './pages/MoviesPage';
+import DiscoveryPage from './pages/DiscoveryPage';
+import PaymentPage from './pages/PaymentPage';
 import Lenis from 'lenis';
 import { useAuthStore } from './store/authStore';
 
@@ -29,13 +31,8 @@ function App() {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
       wheelMultiplier: 1,
-      smoothTouch: false,
       touchMultiplier: 2,
-      infinite: false,
     });
 
     function raf(time) {
@@ -59,9 +56,13 @@ function App() {
             <Route path="/oauth-success" element={<OAuthSuccess />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/movies" element={<MoviesPage />} />
-            <Route path="/events" element={<EventListPage />} />
+            <Route path="/stream" element={<DiscoveryPage type="stream" />} />
+            <Route path="/events" element={<DiscoveryPage type="events" />} />
+            <Route path="/plays" element={<DiscoveryPage type="plays" />} />
+            <Route path="/sports" element={<DiscoveryPage type="sports" />} />
             <Route path="/events/:id" element={<EventDetailPage />} />
             <Route path="/events/:id/seats" element={<SeatSelectionPage />} />
+            <Route path="/booking/:id/pay" element={<PaymentPage />} />
             <Route path="/booking/:id/confirmation" element={<BookingConfirmationPage />} />
           </Routes>
         </div>
